@@ -33,3 +33,14 @@ Cách chạy tại chế độ production:
 3. Update file .env.production (nếu cần thiết)
 4. Build dự án: npm run build
 5. Chạy dự án: npm run preview
+
+===
+
+Notes
+- assets/ và public/
+    - assets
+        - tài nguyên được load với hiệu năng tốt hơn
+        - chỉ những người có quyền truy cập vào source mới vào được
+    - public
+        - tài nguyên được public ra sau khi build dự án xong
+        - người dùng nào (public ra ngoài internet) cũng có thể xem và truy cập được
