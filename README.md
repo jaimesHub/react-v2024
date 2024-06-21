@@ -57,3 +57,4 @@ Notes
         - có cơ chế dịch code riêng của nó nên nó sẽ k hiểu .js
         - Chỉ hiểu được .jsx (`main.jsx`), nếu thấy .js (`main.js`) sẽ bị lỗi
         - Tương tự với .tsx
+    - [Nếu bạn không sử dụng framework, việc tổ chức cấu trúc (structure) như nào, phụ thuộc vào quan điểm và trình độ của mỗi người](https://dev.to/itswillt/folder-structures-in-react-projects-3dp8)
