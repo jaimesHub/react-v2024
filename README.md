@@ -44,3 +44,16 @@ Notes
     - public
         - tài nguyên được public ra sau khi build dự án xong
         - người dùng nào (public ra ngoài internet) cũng có thể xem và truy cập được
+
+- JS/JSX/TS/TSX trong React
+    - React --> compiler --> JS code
+    - Sử dụng `Babel`
+        - Compiler code này tự hiểu .js và .jsx (`main.js` hay `main.jsx` đều như nhau)
+        - Tự động hiểu .js và .jsx là code của React
+        - `Nên` sử dụng `.jsx` (javascript + JSX) hay `.tsx` (typescript + tsx)
+        - [Ví dụ](https://codesandbox.io/p/sandbox/create-react-app-iuync?)
+            - `react-scripts`
+    - Using `vite`
+        - có cơ chế dịch code riêng của nó nên nó sẽ k hiểu .js
+        - Chỉ hiểu được .jsx (`main.jsx`), nếu thấy .js (`main.js`) sẽ bị lỗi
+        - Tương tự với .tsx
