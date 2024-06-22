@@ -63,3 +63,14 @@ Notes
     - Tất cả sau khi build đều compile về html/css/js
     - Cơ chế SSR: Server-side rendering
     - Cơ chế CSR: Client-side rendering
+
+- Component
+    - Concept: a block code
+    - React components are regular JS functions
+    - Component = HTML + CSS + JS
+    - Component for re-using
+    - name convention: `tên component bắt buộc viết hoa chữ cái đầu tiên`
+    - Write component
+        - C1: `<MyComponent></MyComponent>`
+        - C2: `<MyComponent />`
+    - Question: Nếu có nhiều component hay logic viết quá nhiều thì làm thế nào ? -> chia tách, import/export components

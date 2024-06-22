@@ -3,16 +3,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-//TODO : convert App.jsx to arrow function
+// Component = html + css + js
+const MyComponent = () => {
+  return (
+    <div>James & hoidanit</div>
+  );
+}
+
 const App = () => {
   const [count, setCount] = useState(0)
 
-  // OLD STYLE
-  // function myFunction() {
-  //   console.log('>>> run my function')
-  // }
-
-  // NEW STYLE
   const myFunction = () => {
     console.log('>>> run my arrow function')
   }
@@ -30,6 +30,10 @@ const App = () => {
         </a>
       </div>
       <h1>Hello World! It's James!</h1>
+
+      {/* <MyComponent></MyComponent> */}
+      <MyComponent />
+      
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
