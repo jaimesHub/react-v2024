@@ -74,3 +74,10 @@ Notes
         - C1: `<MyComponent></MyComponent>`
         - C2: `<MyComponent />`
     - Question: Nếu có nhiều component hay logic viết quá nhiều thì làm thế nào ? -> chia tách, import/export components
+- Export default ...
+    - luôn `export` 1 function duy nhất được ghi sau nó
+    - import/export duy nhất 1 component đó
+    - khi import, đặt tên gì cũng được. Ví dụ: import ABC, export default MyComponent => MyComponent == ABC
+- Export
+    - import/export nhiều function components
+    - khi import cần trùng tên với nơi nó export
