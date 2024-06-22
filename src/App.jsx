@@ -3,8 +3,21 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+//TODO : convert App.jsx to arrow function
+const App = () => {
   const [count, setCount] = useState(0)
+
+  // OLD STYLE
+  // function myFunction() {
+  //   console.log('>>> run my function')
+  // }
+
+  // NEW STYLE
+  const myFunction = () => {
+    console.log('>>> run my arrow function')
+  }
+
+  myFunction()
 
   return (
     <>
