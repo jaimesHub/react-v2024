@@ -81,3 +81,9 @@ Notes
 - Export
     - import/export nhiều function components
     - khi import cần trùng tên với nơi nó export
+- Việc đặt tên file là `.jsx` (ám chỉ code React với JS) còn JSX là tên công nghệ giúp dịch code React (HTML + JS)
+    - giải thích Công nghệ đằng sau React ==> JSX --transform--> HTML + JS
+    - JSX: 1 parent --> sử dụng Fragment để render 1 component có nhiều hơn 1 thẻ div và k sử dụng thừa HTML
+    - style css: 
+        - css như bình thường ở HTML/CSS
+        - style inline in React
