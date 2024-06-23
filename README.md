@@ -88,3 +88,8 @@ Notes
         - css như bình thường ở HTML/CSS
         - style inline in React
 - Cặp dấu ngoặc đầu tiên trong `div` cho phép chúng ta viết JS trong html
+- Nested Component
+    - react devtool extension
+        - component: phân tích cha con components
+        - profiler: đo hiệu năng
+    - behind the scene: `main.jsx` -> `App.jsx`
