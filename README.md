@@ -140,3 +140,5 @@ Notes
 - Re-render w state
     - Note: `sửa đổi trực tiếp state của React có thể sẽ gây ra bugs`
     - Mỗi lần biến `state` thay đổi, ngay lập tức phần giao diện & data sẽ được vẽ lại giao diện (re-render)
+- Render list
+    - Sử dụng `map` để lặp dữ liệu

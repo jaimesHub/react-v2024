@@ -1,34 +1,24 @@
 import { useState } from "react";
 
 const TodoNew = (props) => {
-    // console.log(">>> check point: ", props);
-
-    // useState hook
-    // const valueInput = "James"; // không thể set thủ công như thế này
-
-    // solution: useState
     const [valueInput, setValueInput] = useState("James");
 
     const { addNewTodo } = props;
 
-    // addNewTodo("James");
-
     const handleClick = () => {
-        // alert("Click me");
-        // console.log(">>> get valueInput: ", valueInput);
         addNewTodo(valueInput);
+        setValueInput("");
     }
 
     const handleOnChange = (name) => {
-        // console.log(">>> onchange name: ", name);
         setValueInput(name);
     }
 
     return (
         <div className="todo-new">
             <input type="text"
-                // onChange={ handleOnChange }
                 onChange={(event) => { handleOnChange(event.target.value) }}
+                value={valueInput} // thay vì đưa cho html quản lý giá trị, ta sẽ quản lý giá trị này bằng state
             />
             <button 
                 style={{ cursor: "pointer" }}
