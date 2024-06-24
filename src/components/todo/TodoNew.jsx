@@ -15,7 +15,8 @@ const TodoNew = (props) => {
 
     const handleClick = () => {
         // alert("Click me");
-        console.log(">>> onchange valueInput: ", valueInput);
+        // console.log(">>> get valueInput: ", valueInput);
+        addNewTodo(valueInput);
     }
 
     const handleOnChange = (name) => {

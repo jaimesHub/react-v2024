@@ -19,8 +19,23 @@ const App = () => {
     country: "Vietnam"
   }
 
-  const addNewTodo = (name, ) => {
-    alert(`call me ${name}`);
+  const addNewTodo = (name) => {
+    // alert(`call me ${name}`);
+    const newTodo = {
+      id: randomIntFromInterval(1, 1000000),
+      name: name
+    }
+
+    // không nên
+    // todoList.push(newTodo); // sửa đổi trực tiếp state của React có thể sẽ gây ra bugs
+    // setTodoList(todoList);
+
+    // nên
+    setTodoList([...todoList, newTodo]);
+  }
+
+  const randomIntFromInterval = (min, max) => { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   return (
