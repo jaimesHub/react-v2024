@@ -122,3 +122,18 @@ Notes
     - để lấy được `event.target.value` khi click `Add` button, ta cần sử dụng `bộ nhớ` của react -> `state`
     - làm sao để truyền tham số đầu vào cho `handleOnChange` function ? -> sử dụng `arrow function`
     - Do sd hàm onChange, nên ở đầu hàm, nó sẽ tự động cho chúng ta biến `event` (đây là event của HTML)
+
+- Kiểm soát Data với State - `useState` hook
+    - Bài toán: Sau khi click vào `Add` button, ta có thể lấy được input được nhập vào
+    - Code chạy từ trên xuống dưới
+    - Khai báo tất cả trong component function
+    - `useState`
+    - destructuring array
+    - ngoài props, nếu ta cập nhật biến `state` thì web sẽ tự động cập nhật giao diện
+    - `state` là 1 biến số của JS
+    - `Nguyên tắc quan trọng`: trong JSX, `không thể` in ra được array/object
+    - Summary:
+        - kiểm soát data thông qua `state`
+            - giống như `trạng thái / tâm trạng` con người
+        - ôn lại `props`
+            - giống như `tài sản` được truyền từ đời cha sang đời con

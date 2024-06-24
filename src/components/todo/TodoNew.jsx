@@ -1,32 +1,41 @@
+import { useState } from "react";
+
 const TodoNew = (props) => {
-    console.log(">>> check point: ", props);
+    // console.log(">>> check point: ", props);
+
+    // useState hook
+    // const valueInput = "James"; // không thể set thủ công như thế này
+
+    // solution: useState
+    const [valueInput, setValueInput] = useState("James");
+
     const { addNewTodo } = props;
 
     // addNewTodo("James");
+
     const handleClick = () => {
-        alert("Click me");
+        // alert("Click me");
+        console.log(">>> onchange valueInput: ", valueInput);
     }
 
-    // const handleOnChange = (event) => {
-    //     console.log(event.target.value);
-    //     // alert(">> handle onchange")
-    // }
-
     const handleOnChange = (name) => {
-        console.log(">>> onchange name: ", name);
+        // console.log(">>> onchange name: ", name);
+        setValueInput(name);
     }
 
     return (
         <div className="todo-new">
             <input type="text"
                 // onChange={ handleOnChange }
-                onChange={(event) => { handleOnChange(event.target.value) }} // c2
-
+                onChange={(event) => { handleOnChange(event.target.value) }}
             />
             <button 
                 style={{ cursor: "pointer" }}
-                onClick={ handleClick } // c1
+                onClick={ handleClick }
             >Add</button>
+            <div>
+                My text input is {valueInput}
+            </div>
       </div>
     );
 }

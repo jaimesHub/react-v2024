@@ -1,10 +1,17 @@
+import { useState } from "react";
+
 import './components/todo/todo.css';
 import reactLogo from './assets/react.svg';
 
 import TodoNew from './components/todo/TodoNew';
 import TodoData from './components/todo/TodoData';
 const App = () => {
-  // Định nghĩa data từ cha component
+  const [todoList, setTodoList] = useState([
+    { id: 1, name: "Learning React" },
+    { id: 2, name: "Watching Youtube" },
+    { id: 3, name: "Working" },
+  ]);
+
   const user = "James";
   const age = 25;
   const data = {
@@ -12,12 +19,9 @@ const App = () => {
     country: "Vietnam"
   }
 
-  // Định nghĩa function từ cha component
   const addNewTodo = (name, ) => {
     alert(`call me ${name}`);
   }
-
-  // addNewTodo();
 
   return (
     <div className="todo-container">
@@ -27,6 +31,7 @@ const App = () => {
         name={user} 
         age={age} 
         data={data}
+        todoList={todoList}
       />
       <div className="todo-image">
           <img src={reactLogo} className="logo" />
