@@ -99,6 +99,7 @@ Notes
 - Props
     - Làm sao để sử dụng `Props`
         - Xác định đâu là `cha` component, `con` component
+        - Định nghĩa `data` (sẽ truyền vào props ở `con`) ở `cha` component 
         - Truyền data từ `cha` -> `con`: sử dụng `object`
         - Ở `con` component, đặt `đúng` tên `props` cho tham số truyền vào (parameters)
     - Từ ban đầu, ở `con` component đã có `props` kể cả `cha` component có truyền đối số hay k
@@ -108,3 +109,9 @@ Notes
         - c1: `object destructuring`
         - c2: `props.value`
         - c3: lấy trực tiếp từ tham số đầu vào của `arrow function component` -> k dành cho `Beginner`
+- Truyền `function` từ cha sang con
+    - addNewTodo={addNewTodo}
+        - addNewTodo / addNewTodoFunc: tên của props
+        - addNewTodo: `giá trị`, truyền kiểu tham trị
+    - Sử dụng `props` ở `con` component để gọi hàm
+    - Truyền data vào function cần làm như thế nào ? 
