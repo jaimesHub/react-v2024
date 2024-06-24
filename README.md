@@ -114,4 +114,11 @@ Notes
         - addNewTodo / addNewTodoFunc: tên của props
         - addNewTodo: `giá trị`, truyền kiểu tham trị
     - Sử dụng `props` ở `con` component để gọi hàm
-    - Truyền data vào function cần làm như thế nào ? 
+    - Truyền data vào function cần làm như thế nào ?
+- (DOM) Event phổ biến
+    - `click`
+    - `change`
+    - `event` param cũng được cung cấp từ ban đầu như `props`
+    - để lấy được `event.target.value` khi click `Add` button, ta cần sử dụng `bộ nhớ` của react -> `state`
+    - làm sao để truyền tham số đầu vào cho `handleOnChange` function ? -> sử dụng `arrow function`
+    - Do sd hàm onChange, nên ở đầu hàm, nó sẽ tự động cho chúng ta biến `event` (đây là event của HTML)
