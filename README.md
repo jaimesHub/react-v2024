@@ -93,3 +93,18 @@ Notes
         - component: phân tích cha con components
         - profiler: đo hiệu năng
     - behind the scene: `main.jsx` -> `App.jsx`
+- Components
+    - Cách tư duy: vẽ base component (cứ code theo cách bạn hiểu).
+    - Code tất cả mọi thứ trong 1 component, nếu chia được layout thì càng tốt (chia tách parent-child)
+- Props
+    - Làm sao để sử dụng `Props`
+        - Xác định đâu là `cha` component, `con` component
+        - Truyền data từ `cha` -> `con`: sử dụng `object`
+        - Ở `con` component, đặt `đúng` tên `props` cho tham số truyền vào (parameters)
+    - Từ ban đầu, ở `con` component đã có `props` kể cả `cha` component có truyền đối số hay k
+    - Mặc định sẽ là `{}`
+    - Một vài cách code để `lấy data`
+        - `props` thay đổi thì giao diện sẽ thay đổi theo, tuy nhiên giao diện không hề `reload` lại
+        - c1: `object destructuring`
+        - c2: `props.value`
+        - c3: lấy trực tiếp từ tham số đầu vào của `arrow function component` -> k dành cho `Beginner`
