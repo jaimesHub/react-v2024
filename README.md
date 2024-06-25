@@ -148,3 +148,6 @@ Notes
     - SD Key phù hợp :
         - Sử dụng id lấy từ backend
         - Generate id `trước khi vào vòng lặp`
+    - Summary
+        - Nguyên nhân tại sao phải cần dùng `key` ?
+        - Làm sao để sử dụng hiệu quả ?
