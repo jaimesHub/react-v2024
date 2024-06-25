@@ -142,3 +142,9 @@ Notes
     - Mỗi lần biến `state` thay đổi, ngay lập tức phần giao diện & data sẽ được vẽ lại giao diện (re-render)
 - Render list
     - Sử dụng `map` để lặp dữ liệu
+- `Warning`: Each child in a list should have a unique `key` prop
+    - `Mặc định`, nếu bạn không dùng key, React sẽ `tự động` sinh key (sử dụng index của array)
+    - Không nên dùng key là chỉ số của mảng (index), hoặc chuỗi string gắn liền với index
+    - SD Key phù hợp :
+        - Sử dụng id lấy từ backend
+        - Generate id `trước khi vào vòng lặp`

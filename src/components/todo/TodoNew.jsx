@@ -18,7 +18,7 @@ const TodoNew = (props) => {
         <div className="todo-new">
             <input type="text"
                 onChange={(event) => { handleOnChange(event.target.value) }}
-                value={valueInput} // thay vì đưa cho html quản lý giá trị, ta sẽ quản lý giá trị này bằng state
+                value={valueInput}
             />
             <button 
                 style={{ cursor: "pointer" }}
