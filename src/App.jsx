@@ -21,32 +21,26 @@ const App = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  const removeTodo = (id) => {
+    const newTodoList = todoList.filter((item) => item.id !== id);
+    setTodoList(newTodoList);
+  }
+
   return (
     <div className="todo-container">
       <div className="todo-title">Todo List</div>
 
       <TodoNew addNewTodo={addNewTodo}/>
 
-      {/* condition in JSX - c1 */}
-      {/* { todoList.length > 0 &&
-        <TodoData todoList={todoList}/>
-      }
-
-      { todoList.length === 0 &&
-        <div className="todo-image">
-          <img src={reactLogo} className="logo" />
-        </div>
-      } */}
-
-      {/* condition in JSX - c2 */}
       { todoList.length > 0 ? 
-        <TodoData todoList={todoList}/> :
+        <TodoData 
+          todoList={todoList}
+          removeTodo={removeTodo}
+        /> :
         <div className="todo-image">
           <img src={reactLogo} className="logo" />
         </div>
       }
-      
-      
     </div>
   )
 }
