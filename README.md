@@ -151,3 +151,6 @@ Notes
     - Summary
         - Nguyên nhân tại sao phải cần dùng `key` ?
         - Làm sao để sử dụng hiệu quả ?
+- Render với điều kiện
+    - Sử dụng JSX
+    - sau && thì nên chỉ có 1 khối div block thôi

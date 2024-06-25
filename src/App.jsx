@@ -24,11 +24,29 @@ const App = () => {
   return (
     <div className="todo-container">
       <div className="todo-title">Todo List</div>
+
       <TodoNew addNewTodo={addNewTodo}/>
-      <TodoData todoList={todoList}/>
-      <div className="todo-image">
+
+      {/* condition in JSX - c1 */}
+      {/* { todoList.length > 0 &&
+        <TodoData todoList={todoList}/>
+      }
+
+      { todoList.length === 0 &&
+        <div className="todo-image">
           <img src={reactLogo} className="logo" />
-      </div>
+        </div>
+      } */}
+
+      {/* condition in JSX - c2 */}
+      { todoList.length > 0 ? 
+        <TodoData todoList={todoList}/> :
+        <div className="todo-image">
+          <img src={reactLogo} className="logo" />
+        </div>
+      }
+      
+      
     </div>
   )
 }
