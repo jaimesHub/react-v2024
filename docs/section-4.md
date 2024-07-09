@@ -1,0 +1,37 @@
+# Section 4: Hello World với React
+
+- Setup dự án
+    - node v20.14.0
+- Clone code: https://gitlab.com/public-starter-projects1/000-frontend-react/02-react-ulitmate-javascript/01-react-vite-hoidanit-starter
+- `git remote set-url origin new.git.url/here`
+- Install và chạy dự án
+- Các cách setup dự án
+    - Create-react-app: https://create-react-app.dev/
+    - `Vite: https://vitejs.dev/guide/`
+    - Sử dụng framework: Nextjs, Gasby, Remix
+- Cấu trúc dự án
+    - assets/ và public/
+        - assets
+            - tài nguyên được load với hiệu năng tốt hơn
+            - chỉ những người có quyền truy cập vào source mới vào được
+        - public
+            - tài nguyên được public ra sau khi build dự án xong
+            - người dùng nào (public ra ngoài internet) cũng có thể xem và truy cập được
+
+    - JS/JSX/TS/TSX trong React
+        - React --> compiler --> JS code
+        - Sử dụng `Babel`
+            - Compiler code này tự hiểu .js và .jsx (`main.js` hay `main.jsx` đều như nhau)
+            - Tự động hiểu .js và .jsx là code của React
+            - `Nên` sử dụng `.jsx` (javascript + JSX) hay `.tsx` (typescript + tsx)
+            - [Ví dụ](https://codesandbox.io/p/sandbox/create-react-app-iuync?)
+                - `react-scripts`
+        - Using `vite`
+            - có cơ chế dịch code riêng của nó nên nó sẽ k hiểu .js
+            - Chỉ hiểu được .jsx (`main.jsx`), nếu thấy .js (`main.js`) sẽ bị lỗi
+            - Tương tự với .tsx
+        - [Nếu bạn không sử dụng framework, việc tổ chức cấu trúc (structure) như nào, phụ thuộc vào quan điểm và trình độ của mỗi người](https://dev.to/itswillt/folder-structures-in-react-projects-3dp8)
+- Cơ chế hoạt động của React với browser: SPA
+    - Tất cả sau khi build đều compile về html/css/js
+    - Cơ chế SSR: Server-side rendering
+    - Cơ chế CSR: Client-side rendering
