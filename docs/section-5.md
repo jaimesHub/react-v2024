@@ -1,5 +1,20 @@
 # Section 5: Tư duy thiết kế UI với Component
 
+- [Importing and Exporting in React](https://react.dev/learn/importing-and-exporting-components)
+- [Export default in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+- [JSX](https://react.dev/learn/writing-markup-with-jsx)
+- [Fragement](https://react.dev/reference/react/Fragment)
+- [JSX with {}](https://react.dev/learn/javascript-in-jsx-with-curly-braces)
+    - `Nguyên tắc : sử dụng cặp dấu ngoặc nhọn { } để viết code javascript bên trong html`
+- react devtool extension
+- Props
+- Truyền function từ cha sang con 
+- [DOM Events](https://react.dev/learn/responding-to-events) 
+    - onClick
+    - onChange
+- [useState hook](https://react.dev/learn/state-a-components-memory)
+- Re-render với State
+
 - Component
     - Concept: a block code
     - React components are regular JS functions
@@ -10,16 +25,19 @@
         - C1: `<MyComponent></MyComponent>`
         - C2: `<MyComponent />`
     - Question: Nếu có nhiều component hay logic viết quá nhiều thì làm thế nào ? -> chia tách, import/export components
-- Export default ...
+
+- `Default Exports`
     - luôn `export` 1 function duy nhất được ghi sau nó
     - import/export duy nhất 1 component đó
     - khi import, đặt tên gì cũng được. Ví dụ: import ABC, export default MyComponent => MyComponent == ABC
-- Export
+- `Named Exports`
     - import/export nhiều function components
     - khi import cần trùng tên với nơi nó export
-- Việc đặt tên file là `.jsx` (ám chỉ code React với JS) còn JSX là tên công nghệ giúp dịch code React (HTML + JS)
-    - giải thích Công nghệ đằng sau React ==> JSX --transform--> HTML + JS
-    - JSX: 1 parent --> sử dụng Fragment để render 1 component có nhiều hơn 1 thẻ div và k sử dụng thừa HTML
+
+- Việc đặt tên file là `.jsx` (ám chỉ code React với JS) 
+    - còn JSX là tên công nghệ giúp dịch code React (HTML + JS)
+    - giải thích Công nghệ đằng sau React ==> JSX --`transform`--> (HTML + JS)
+    - JSX: 1 parent --> sử dụng `Fragment` để render 1 component có `nhiều` hơn 1 thẻ div và k sử dụng thừa HTML
     - style css: 
         - css như bình thường ở HTML/CSS
         - style inline in React
