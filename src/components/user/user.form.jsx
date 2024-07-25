@@ -18,7 +18,6 @@ const UserForm = () => {
                     <span>FullName</span>
                     <Input
                         value={fullName}
-                        // onChange={(event) => { console.log(">>>check input: ", event.target.value) }}
                         onChange={(event) => { setFullName(event.target.value) }}
                     />
                 </div>
