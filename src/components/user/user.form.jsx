@@ -10,23 +10,20 @@ const UserForm = () => {
     const [phone, setPhone] = useState("");
 
     const handleClickBtn = async () => {
-        // console.log(">>> check state: ", { fullName, email, password, phone });
         const res = await createUserAPI(fullName, email, password, phone);
-        // if (res.data && res.data.data) {
-        //     notification.success({
-        //         message: "Create a new user",
-        //         description: "Tạo mới người dùng thành công"
-        //     });
-        // }
-
-        // console.log(">>> check res: ", res.data.data);
 
         console.log(">>> check res (After adding interceptors): ", res);
+
+        // debugger
         if (res.data) {
-            // After adding interceptors at axios.customize.js file
             notification.success({
                 message: "Create a new user",
                 description: "Tạo mới người dùng thành công"
+            });
+        } else {
+            notification.error({
+                message: "Error create user",
+                description: JSON.stringify(res.message)
             });
         }
 
