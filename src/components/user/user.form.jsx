@@ -3,7 +3,9 @@ import { useState } from "react";
 import { createUserAPI } from "../../services/api.service";
 
 
-const UserForm = () => {
+const UserForm = (props) => {
+    const { loadUser } = props;
+
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -11,33 +13,32 @@ const UserForm = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleClickBtn = () => {
-        setIsModalOpen(true);
-    }
-
     const handleSubmitBtn = async () => {
-        // alert("me");
-
         const res = await createUserAPI(fullName, email, password, phone);
 
-        console.log(">>> check res (After adding interceptors): ", res);
-
-        // debugger
         if (res.data) {
             notification.success({
                 message: "Create a new user",
                 description: "Tạo mới người dùng thành công"
             });
 
-            setIsModalOpen(false);
+            resetAndCloseModal();
+
+            await loadUser();
         } else {
             notification.error({
                 message: "Error create user",
                 description: JSON.stringify(res.message)
             });
         }
+    }
 
-        console.log(">>> check res (After adding interceptors): ", res.data);
+    const resetAndCloseModal = () => {
+        setIsModalOpen(false);
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
     }
 
     return (
@@ -45,8 +46,7 @@ const UserForm = () => {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <h3>Table users</h3>
                 <Button
-                    onClick={handleClickBtn}
-                    // onClick={() => setIsModalOpen(true)}
+                    onClick={() => setIsModalOpen(true)}
                     type="primary">Create user
                 </Button>
             </div>
@@ -55,7 +55,7 @@ const UserForm = () => {
                 title="Create user"
                 open={isModalOpen}
                 onOk={handleSubmitBtn}
-                onCancel={() => setIsModalOpen(false)}
+                onCancel={() => resetAndCloseModal()}
                 maskClosable={false}
                 okText={"CREATE"}
             >
