@@ -1,4 +1,5 @@
-import { Button, Drawer } from "antd";
+import { Drawer } from "antd";
+import { useState } from "react";
 
 const ViewUserDetail = (props) => {
     const {
@@ -7,6 +8,26 @@ const ViewUserDetail = (props) => {
         isDetailOpen,
         setIsDetailOpen
     } = props;
+
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [preview, setPreview] = useState(null);
+
+    const handleOnChangeFile = (e) => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(null);
+            setPreview(null);
+            return
+        }
+
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedFile(file);
+            setPreview(URL.createObjectURL(file));
+        }
+        // console.log(">>> check file: ", file);
+    }
+
+    console.log(">>> check preview: ", preview);
 
     return (
         <Drawer
@@ -29,10 +50,18 @@ const ViewUserDetail = (props) => {
                     <p>Phone number: {dataDetail.phone}</p>
                     <br />
                     <p>Avatar: </p>
-                    <div>
+                    <div style={{
+                        marginTop: "10px",
+                        height: "100px",
+                        width: "100px",
+                        border: "1px solid #ccc"
+                    }}>
                         <img
-                            height={150}
-                            width={150}
+                            style={{
+                                height: "100%",
+                                width: "100%",
+                                objectFit: "contain"
+                            }}
                             src={`${import.meta.env.VITE_BACKEND_URL}/images/avatar/${dataDetail.avatar}`}
                         />
                     </div>
@@ -50,9 +79,29 @@ const ViewUserDetail = (props) => {
                             htmlFor="btnUpload">
                             Upload Avatar
                         </label>
-                        <input type="file" hidden id="btnUpload" />
+                        <input
+                            type="file"
+                            hidden
+                            id="btnUpload"
+                            // onChange={handleOnChangeFile} 
+                            onChange={(event) => handleOnChangeFile(event)}
+                        />
                     </div>
-                    {/* <Button type="primary">Upload Avatar</Button> */}
+                    <div style={{
+                        marginTop: "10px",
+                        height: "100px",
+                        width: "100px",
+                        border: "1px solid #ccc"
+                    }}>
+                        <img
+                            style={{
+                                height: "100%",
+                                width: "100%",
+                                objectFit: "contain"
+                            }}
+                            src={preview}
+                        />
+                    </div>
                 </> :
                 <>
                     <p>No data</p>
