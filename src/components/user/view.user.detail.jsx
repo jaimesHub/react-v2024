@@ -87,7 +87,7 @@ const ViewUserDetail = (props) => {
                             onChange={(event) => handleOnChangeFile(event)}
                         />
                     </div>
-                    <div style={{
+                    {preview && <div style={{
                         marginTop: "10px",
                         height: "100px",
                         width: "100px",
@@ -101,7 +101,7 @@ const ViewUserDetail = (props) => {
                             }}
                             src={preview}
                         />
-                    </div>
+                    </div>}
                 </> :
                 <>
                     <p>No data</p>
