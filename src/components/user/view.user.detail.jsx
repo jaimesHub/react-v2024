@@ -1,12 +1,14 @@
-import { Drawer } from "antd";
+import { Button, Drawer, notification } from "antd";
 import { useState } from "react";
+import { handleUploadFile, updateUserAvatarAPI } from "../../services/api.service";
 
 const ViewUserDetail = (props) => {
     const {
         dataDetail,
         setDataDetail,
         isDetailOpen,
-        setIsDetailOpen
+        setIsDetailOpen,
+        loadUser,
     } = props;
 
     const [selectedFile, setSelectedFile] = useState(null);
@@ -28,6 +30,56 @@ const ViewUserDetail = (props) => {
     }
 
     console.log(">>> check preview: ", preview);
+
+    const handleUpdateAvatar = async () => {
+        // step 1: upload file
+        console.log(">>> check file update avatar:: ", selectedFile);
+        const resUpload = await handleUploadFile(selectedFile, "avatar");
+        console.log(">>> check resUpload: ", resUpload);
+
+        if (resUpload.data) {
+            // success
+            const newAvatar = resUpload.data.fileUploaded;
+            console.log(">>> check newAvatar:: ", newAvatar);
+
+            // step 2: update user
+            const resUpdateAvatar = await updateUserAvatarAPI(
+                newAvatar,
+                dataDetail._id,
+                dataDetail.fullName,
+                dataDetail.phone
+            );
+            if (resUpdateAvatar.data) {
+                // clear data
+                setIsDetailOpen(false);
+                setSelectedFile(null);
+                setPreview(null);
+
+                // loading users
+                await loadUser();
+
+                // update success
+                notification.success({
+                    message: "Update Successfully",
+                    description: "Update avatar successfully!"
+                })
+            } else {
+                // update fail
+                notification.error({
+                    message: "Update Error!",
+                    description: "Update avatar fail!"
+                })
+            }
+        } else {
+            // fail
+            notification.error({
+                message: "Error while uploading avatar",
+                description: JSON.stringify(resUpload.message)
+            });
+
+            return;
+        }
+    }
 
     return (
         <Drawer
@@ -87,21 +139,27 @@ const ViewUserDetail = (props) => {
                             onChange={(event) => handleOnChangeFile(event)}
                         />
                     </div>
-                    {preview && <div style={{
-                        marginTop: "10px",
-                        height: "100px",
-                        width: "100px",
-                        border: "1px solid #ccc"
-                    }}>
-                        <img
-                            style={{
-                                height: "100%",
-                                width: "100%",
-                                objectFit: "contain"
-                            }}
-                            src={preview}
-                        />
-                    </div>}
+                    {preview &&
+                        <>
+                            <div style={{
+                                marginTop: "10px",
+                                height: "100px",
+                                width: "100px",
+                                marginBottom: "15px"
+                            }}>
+                                <img
+                                    style={{
+                                        height: "100%",
+                                        width: "100%",
+                                        objectFit: "contain"
+                                    }}
+                                    src={preview}
+                                />
+                            </div>
+                            <Button
+                                onClick={() => handleUpdateAvatar()}
+                                type="primary">Save</Button>
+                        </>}
                 </> :
                 <>
                     <p>No data</p>
