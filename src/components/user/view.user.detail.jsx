@@ -67,7 +67,7 @@ const ViewUserDetail = (props) => {
                 // update fail
                 notification.error({
                     message: "Update Error!",
-                    description: "Update avatar fail!"
+                    description: JSON.stringify(resUpdateAvatar.message)
                 })
             }
         } else {
