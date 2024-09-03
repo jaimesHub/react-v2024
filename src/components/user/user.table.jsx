@@ -44,7 +44,7 @@ const UserTable = (props) => {
             // dataIndex: 'no',
             render: (_, record, index) => {
                 return (
-                    <>{index + 1}</>
+                    <>{(index + 1) + (current - 1) * pageSize}</>
                 );
             }
         },
@@ -99,7 +99,20 @@ const UserTable = (props) => {
     ];
 
     const onChange = (pagination, filters, sorter, extra) => {
-        console.log('>>> check:: ', { pagination, filters, sorter, extra });
+        // console.log('>>> check:: ', { pagination, filters, sorter, extra });
+        // nếu thay đổi trang: current
+        if (pagination && pagination.current) {
+            if (+pagination.current !== +current) {
+                setCurrent(+pagination.current);
+            }
+        }
+
+        // nếu thay đổi tổng số phần tử: pageSize
+        if (pagination && pagination.pageSize) {
+            if (+pagination.pageSize !== +pageSize) {
+                setPageSize(+pagination.pageSize);
+            }
+        }
     };
 
     // console.log(">>> check dataUpdate: ", dataUpdate);

@@ -11,9 +11,10 @@ const UserPage = () => {
     const [total, setTotal] = useState(0);
 
     // empty dependencies array is empty -> run once 
+    // not empty dependencies array -> next value !== prev value
     useEffect(() => {
         loadUser();
-    }, []);
+    }, [current, pageSize]); // [] + condition
 
     const loadUser = async () => {
         const res = await fetchAllUserAPI(current, pageSize);
@@ -25,6 +26,10 @@ const UserPage = () => {
             setTotal(res.data.meta.total);
         }
     };
+
+    console.log('>> check current: ', current);
+    console.log('>> check pageSize: ', pageSize);
+
 
     return (
         <div style={{ padding: "20px" }}>
