@@ -106,6 +106,17 @@ const RegisterPage = () => {
                     >
                         Register
                     </Button>
+                    <Button
+                        onClick={() => {
+                            console.log(">>> check form:: ", form.getFieldsValue());
+                            form.setFieldsValue({
+                                email: "testtt@gmail.com",
+                                fullName: "testtt"
+                            });
+                        }}
+                    >
+                        Test Autofill Username to Email Field
+                    </Button>
                 </div>
             </div>
         </Form>
