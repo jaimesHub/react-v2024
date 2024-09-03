@@ -7,3 +7,7 @@
     - When use ?
         - Ít data --> control
         - Nhiều --> uncontrol 
+- Uncontrolled component
+    - validate data
+    - getFormValues (get data when user update data info)
+    - setFormValue
