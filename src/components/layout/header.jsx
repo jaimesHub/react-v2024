@@ -1,10 +1,10 @@
-import { Link, NavLink } from 'react-router-dom';
-// import './header.css';
+import { Link } from 'react-router-dom';
 import {
     UsergroupAddOutlined,
     HomeOutlined,
     AuditOutlined,
-    SettingOutlined
+    LoginOutlined,
+    AliwangwangOutlined,
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useContext, useState } from 'react';
@@ -15,10 +15,7 @@ const Header = () => {
 
     const { user } = useContext(AuthContext); // user data changes -> this will re-render
 
-    console.log(">>> check data at header: ", user);
-
     const onClick = (e) => {
-        console.log('click ', e);
         setCurrent(e.key);
     };
 
@@ -38,21 +35,22 @@ const Header = () => {
             key: 'products',
             icon: <AuditOutlined />,
         },
-        {
-            label: 'Settings',
+        ...(!user.id ? [{
+            label: <Link to={"/login"}>Login</Link>,
+            key: 'login',
+            icon: <LoginOutlined />,
+        }] : []),
+        ...(user.id ? [{
+            label: `Welcome ${user.fullName}`,
             key: 'setting',
-            icon: <SettingOutlined />,
+            icon: <AliwangwangOutlined />,
             children: [
                 {
-                    label: <Link to={"/login"}>Sign in</Link>,
-                    key: 'login',
-                },
-                {
-                    label: 'Sign out',
+                    label: 'Logout',
                     key: 'logout',
                 },
             ],
-        },
+        }] : []),
     ];
 
     return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;

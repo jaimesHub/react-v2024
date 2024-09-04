@@ -24,3 +24,5 @@
         - tạo context (AuthContext) --> export 
         - wrap component (AuthWrapper() -> AuthContext.Provider)
     - refresh (F5) --> mất data trong state 
+- React props.Children
+    - explain why using `props.children` in `React Context`

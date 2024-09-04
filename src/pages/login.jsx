@@ -20,9 +20,11 @@ const LoginPage = () => {
 
         if (res.data) {
             message.success("Login success");
+
             localStorage.setItem("access_token", res.data.access_token);
-            console.log(">>> data at login process: ", res.data.user);
+
             setUser(res.data.user); // when user data changes -> component uses AuthContext will re-render
+
             navigate("/");
         } else {
             notification.error({
