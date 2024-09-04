@@ -39,3 +39,6 @@
     - PrivateRoute
 - Make the `Spin` center of screen
 - Logout
+- Summary
+    - Luồng login và sử dụng Token
+    - Chia sẻ data giữa các component
