@@ -30,3 +30,7 @@
     - `onKeyDown` event
     - gán token vào header với interceptor
         - // Add a request interceptor
+    - thông tin định danh 
+        - getAccount() --> when to use ? --> F5
+        - App.jsx
+    - test `slow 3G` / await delay(miliSeconds) --> fix it
