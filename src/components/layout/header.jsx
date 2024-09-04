@@ -7,10 +7,15 @@ import {
     SettingOutlined
 } from '@ant-design/icons';
 import { Menu } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../context/auth.context';
 
 const Header = () => {
     const [current, setCurrent] = useState('');
+
+    const { user } = useContext(AuthContext); // user data changes -> this will re-render
+
+    console.log(">>> check data at header: ", user);
 
     const onClick = (e) => {
         console.log('click ', e);

@@ -14,3 +14,13 @@
 - Logic xử lý sau khi login 
     - Lưu trữ thông tin user 
     - F5 --> data mất --> gọi api để lấy lại data 
+    - Chia sẻ data bằng Context 
+
+- Using `React context API`
+    - lưu gì cũng được, chủ yếu là `biến` / `object` 
+    - lưu thông tin user vào `React context`
+    - hiển thị thông tin user đăng nhập lên header 
+    - steps
+        - tạo context (AuthContext) --> export 
+        - wrap component (AuthWrapper() -> AuthContext.Provider)
+    - refresh (F5) --> mất data trong state 
