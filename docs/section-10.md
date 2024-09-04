@@ -26,3 +26,7 @@
     - refresh (F5) --> mất data trong state 
 - React props.Children
     - explain why using `props.children` in `React Context`
+- Handling F5 (Refresh Page)
+    - `onKeyDown` event
+    - gán token vào header với interceptor
+        - // Add a request interceptor

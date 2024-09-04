@@ -27,8 +27,8 @@ const UserPage = () => {
         }
     };
 
-    console.log('>> check current: ', current);
-    console.log('>> check pageSize: ', pageSize);
+    // console.log('>> check current: ', current);
+    // console.log('>> check pageSize: ', pageSize);
 
 
     return (

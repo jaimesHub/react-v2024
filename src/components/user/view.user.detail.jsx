@@ -29,18 +29,18 @@ const ViewUserDetail = (props) => {
         // console.log(">>> check file: ", file);
     }
 
-    console.log(">>> check preview: ", preview);
+    // console.log(">>> check preview: ", preview);
 
     const handleUpdateAvatar = async () => {
         // step 1: upload file
-        console.log(">>> check file update avatar:: ", selectedFile);
+        // console.log(">>> check file update avatar:: ", selectedFile);
         const resUpload = await handleUploadFile(selectedFile, "avatar");
-        console.log(">>> check resUpload: ", resUpload);
+        // console.log(">>> check resUpload: ", resUpload);
 
         if (resUpload.data) {
             // success
             const newAvatar = resUpload.data.fileUploaded;
-            console.log(">>> check newAvatar:: ", newAvatar);
+            // console.log(">>> check newAvatar:: ", newAvatar);
 
             // step 2: update user
             const resUpdateAvatar = await updateUserAvatarAPI(
