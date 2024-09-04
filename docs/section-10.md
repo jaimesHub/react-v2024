@@ -35,5 +35,6 @@
         - App.jsx
     - test `slow 3G` / await delay(miliSeconds) --> fix it 
 - Fix error: (error: Khi chưa gọi được API thì k hiển thị data)
-- Authenticated user can navigate on Books page (Not done)
+- Authenticated user can navigate on Books page
+    - PrivateRoute
 - Make the `Spin` center of screen
