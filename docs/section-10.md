@@ -38,3 +38,4 @@
 - Authenticated user can navigate on Books page
     - PrivateRoute
 - Make the `Spin` center of screen
+- Logout
