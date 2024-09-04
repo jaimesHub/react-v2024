@@ -33,4 +33,7 @@
     - thông tin định danh 
         - getAccount() --> when to use ? --> F5
         - App.jsx
-    - test `slow 3G` / await delay(miliSeconds) --> fix it
+    - test `slow 3G` / await delay(miliSeconds) --> fix it 
+- Fix error: (error: Khi chưa gọi được API thì k hiển thị data)
+- Authenticated user can navigate on Books page (Not done)
+- Make the `Spin` center of screen
