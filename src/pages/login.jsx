@@ -1,12 +1,23 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Row, Col, Divider } from "antd";
+import { Button, Form, Input, Row, Col, Divider, message, notification } from "antd";
 import { Link } from "react-router-dom";
+import { loginAPI } from "../services/api.service";
 
 const LoginPage = () => {
     const [form] = Form.useForm();
 
-    const onFinish = (values) => {
-        console.log(">>> check values: ", values)
+    const onFinish = async (values) => {
+        console.log(">>> check values: ", values);
+        const res = await loginAPI(values.email, values.password);
+
+        if (res.data) {
+            message.success("Login success");
+        } else {
+            notification.error({
+                message: "Login failed",
+                description: JSON.stringify(res.message)
+            });
+        }
     }
 
     return (
