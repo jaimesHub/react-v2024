@@ -1,40 +1,37 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Space, Table } from "antd";
 
-const BookTable = () => {
-    let index = 0;
-    const dataSource = [
-        {
-            key: '1',
-            id: index + Math.random(),
-            mainText: 'Tiền Đẻ Ra Tiền: Đầu Tư Tài Chính Thông Minh',
-            price: 80000,
-            quantity: 1000,
-            author: 'Ducan Bannatyne',
-        },
-        {
-            key: '2',
-            id: index + Math.random(),
-            mainText: 'Tư Duy Về Tiền Bạc - Những Lựa Chọn Tài Chính Đúng Đắn Và Sáng Suốt Hơn',
-            price: 70000,
-            quantity: 1000,
-            author: 'Jonathan Clements',
-        },
-    ];
+const BookTable = (props) => {
+    const {
+        dataBooks,
+        loadBooks,
+        current,
+        pageSize,
+        total,
+        setCurrent,
+        setPageSize
+    } = props;
 
     const columns = [
         {
             title: 'No',
             render: (_, record, index) => {
                 return (
-                    <>{index}</>
+                    <>{(index + 1) + (current - 1) * pageSize}</>
                 );
             }
         },
         {
             title: 'Id',
             dataIndex: 'id',
-            key: '_id',
+            render: (_, record) => {
+                console.log('>> check record: ', record);
+                return (
+                    <a href="#">
+                        {record._id}
+                    </a>
+                );
+            }
         },
         {
             title: 'Title',
@@ -67,7 +64,11 @@ const BookTable = () => {
 
     return (
         <>
-            <Table dataSource={dataSource} columns={columns} />
+            <Table
+                dataSource={dataBooks}
+                columns={columns}
+            />
+
         </>
     );
 }
