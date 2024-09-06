@@ -105,5 +105,5 @@ export {
     loginAPI,
     getAccountAPI,
     logoutAPI,
-    fetchAllBookAPI
+    fetchAllBookAPI,
 }
