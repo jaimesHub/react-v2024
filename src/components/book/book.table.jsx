@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Space, Table } from "antd";
+import { Button, Space, Table } from "antd";
 
 const BookTable = (props) => {
     const {
@@ -61,12 +61,47 @@ const BookTable = (props) => {
         },
     ];
 
+    const onChange = (pagination, filters, sorter, extra) => {
+        if (pagination && pagination.current) {
+            if (+pagination.current !== +current) {
+                setCurrent(+pagination.current);
+            }
+        }
+
+        if (pagination && pagination.pageSize) {
+            if (+pagination.pageSize !== +pageSize) {
+                setPageSize(+pagination.pageSize);
+            }
+        }
+    }
+
 
     return (
         <>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <h3>Table books</h3>
+                <Button
+                    onClick={() => setIsModalOpen(true)}
+                    type="primary">Create book
+                </Button>
+            </div>
             <Table
                 dataSource={dataBooks}
                 columns={columns}
+                rowKey={"_id"}
+                pagination={
+                    {
+                        current: current,
+                        pageSize: pageSize,
+                        total: total,
+                        showSizeChanger: true,
+                        // onChange: (page, pageSize) => {
+                        //     setCurrent(page);
+                        //     setPageSize(pageSize);
+                        // }
+                        showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} of {total} rows</div>) }
+                    }}
+                onChange={onChange}
             />
 
         </>
