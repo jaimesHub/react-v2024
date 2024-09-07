@@ -130,7 +130,7 @@ const BookTable = () => {
 
     return (
         <>
-            <BookForm loadBook={loadBook} />
+            <BookForm loadBooks={loadBook} />
 
             <Table
                 columns={columns}

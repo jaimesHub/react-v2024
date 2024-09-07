@@ -94,6 +94,19 @@ const fetchAllBookAPI = (current, pageSize) => {
     return axios.get(URL_BACKEND);
 }
 
+const createBookAPI = (mainText, author, price, quantity, category, thumbnail) => {
+    const URL_BACKEND = "/api/v1/book";
+    const data = {
+        mainText,
+        author,
+        price,
+        quantity,
+        category,
+        thumbnail,
+    }
+    return axios.post(URL_BACKEND, data);
+}
+
 export {
     createUserAPI,
     fetchAllUserAPI,
@@ -106,4 +119,5 @@ export {
     getAccountAPI,
     logoutAPI,
     fetchAllBookAPI,
+    createBookAPI,
 }
