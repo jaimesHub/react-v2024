@@ -3,6 +3,7 @@ import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
 import BookDetail from "./book.detail";
+import BookForm from "./create.book.control";
 
 const BookTable = () => {
 
@@ -129,14 +130,7 @@ const BookTable = () => {
 
     return (
         <>
-            <div style={{
-                marginTop: "10px",
-                display: "flex",
-                justifyContent: "space-between"
-            }}>
-                <h3>Table Book</h3>
-                <Button type="primary">Create Book</Button>
-            </div>
+            <BookForm loadBook={loadBook} />
 
             <Table
                 columns={columns}
