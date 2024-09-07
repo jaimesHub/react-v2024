@@ -1,6 +1,6 @@
-import { Button, Form, Input, InputNumber, Modal, notification, Select } from "antd";
-import { useState } from "react";
+import { Form, Input, InputNumber, Modal, Select, notification } from "antd";
 import { createBookAPI, handleUploadFile } from "../../services/api.service";
+import { useState } from "react";
 
 const CreateBookUncontrol = (props) => {
     const {
@@ -19,24 +19,27 @@ const CreateBookUncontrol = (props) => {
             notification.error({
                 message: "Error create book",
                 description: "Please upload thumbnail image!"
-            })
+            });
+
             return;
         }
 
         //step 1: upload file
         const resUpload = await handleUploadFile(selectedFile, "book");
-
         if (resUpload.data) {
             //success
             const newThumbnail = resUpload.data.fileUploaded;
+
             //step 2: create book
+            const { mainText, author, price, quantity, category } = values;
+
             const resBook = await createBookAPI(
                 newThumbnail,
-                values.mainText,
-                values.author,
-                values.price,
-                values.quantity,
-                values.category
+                mainText,
+                author,
+                price,
+                quantity,
+                category
             );
 
             if (resBook.data) {
@@ -53,17 +56,22 @@ const CreateBookUncontrol = (props) => {
                 notification.error({
                     message: "Error create book",
                     description: JSON.stringify(resBook.message)
-                });
+                })
             }
         } else {
             //failed
             notification.error({
                 message: "Error upload file",
                 description: JSON.stringify(resUpload.message)
-            });
+            })
         }
+    }
 
-        // resetAndCloseModal();
+    const resetAndCloseModal = () => {
+        form.resetFields();
+        setSelectedFile(null);
+        setPreview(null);
+        setIsCreateOpen(false);
     }
 
     const handleOnChangeFile = (event) => {
@@ -81,158 +89,155 @@ const CreateBookUncontrol = (props) => {
         }
     }
 
-    const resetAndCloseModal = () => {
-        form.resetFields();
-
-        setSelectedFile(null);
-        setPreview(null);
-
-        setIsCreateOpen(false);
-    }
-
     return (
-        <>
-            <Modal
-                title="Create Book"
-                open={isCreateOpen}
-                onOk={() => form.submit()}
-                onCancel={() => resetAndCloseModal()}
-                maskClosable={false}
-                okText={"CREATE"}
+        <Modal
+            title="Create Book (uncontrolled component)"
+            open={isCreateOpen}
+            onOk={() => form.submit()}
+            onCancel={() => resetAndCloseModal()}
+            maskClosable={false}
+            okText={"CREATE"}
+        >
+            <Form
+                form={form}
+                onFinish={handleSubmitBtn}
+                layout="vertical"
             >
-                <Form
-                    form={form}
-                    layout="vertical"
-                    onFinish={handleSubmitBtn}
-                >
-                    <Form.Item
-                        label="Title"
-                        name="mainText"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input title!',
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Author"
-                        name="author"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input author!',
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Price"
-                        name="price"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input price!',
-                            },
-                        ]}
-                    >
-                        <InputNumber
-                            style={{ width: "100%" }}
-                            addonAfter={'đ'}
-                        />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Quantity"
-                        name="quantity"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input quantity!',
-                            },
-                        ]}
-                    >
-                        <InputNumber
-                            style={{ width: "100%" }}
-                        />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Category"
-                        name="category"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input category!',
-                            },
-                        ]}
-                    >
-                        <Select
-                            style={{ width: "100%" }}
-                            options={[
-                                { value: 'Arts', label: 'Arts' },
-                                { value: 'Business', label: 'Business' },
-                                { value: 'Comics', label: 'Comics' },
-                                { value: 'Cooking', label: 'Cooking' },
-                                { value: 'Entertainment', label: 'Entertainment' },
-                                { value: 'History', label: 'History' },
-                                { value: 'Music', label: 'Music' },
-                                { value: 'Sports', label: 'Sports' },
-                                { value: 'Teen', label: 'Teen' },
-                                { value: 'Travel', label: 'Travel' },
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <div>
+                        <Form.Item
+                            label="Tiêu đề"
+                            name="mainText"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Title is required!',
+                                }
                             ]}
-                        />
-                    </Form.Item>
+                        >
+                            <Input />
+                        </Form.Item>
+                    </div>
 
-                    <Form.Item
-                        label="Thumbnail Image"
-                        name="newThumbnail"
-                    >
-                        <>
-                            <div>
-                                <label htmlFor='btnUpload' style={{
-                                    display: "block",
-                                    width: "fit-content",
-                                    marginTop: "15px",
-                                    padding: "5px 10px",
-                                    background: "orange",
-                                    borderRadius: "5px",
-                                    cursor: "pointer"
+                    <div>
+                        <Form.Item
+                            label="Tác giả"
+                            name="author"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Author is required!',
+                                }
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </div>
+
+                    <div>
+                        <Form.Item
+                            label="Giá tiền"
+                            name="price"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Price is required!',
+                                }
+                            ]}
+                        >
+                            <InputNumber
+                                style={{ width: "100%" }}
+                                addonAfter={' đ'}
+                            />
+                        </Form.Item>
+                    </div>
+
+                    <div>
+                        <Form.Item
+                            label="Số lượng"
+                            name="quantity"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Quantity is required!',
+                                }
+                            ]}
+                        >
+                            <InputNumber
+                                style={{ width: "100%" }}
+                            />
+                        </Form.Item>
+                    </div>
+
+                    <div>
+                        <Form.Item
+                            label="Thể loại"
+                            name="category"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Category is required!',
+                                }
+                            ]}
+                        >
+                            <Select
+                                style={{ width: "100%" }}
+                                name="category"
+                                options={[
+                                    { value: 'Arts', label: 'Arts' },
+                                    { value: 'Business', label: 'Business' },
+                                    { value: 'Comics', label: 'Comics' },
+                                    { value: 'Cooking', label: 'Cooking' },
+                                    { value: 'Entertainment', label: 'Entertainment' },
+                                    { value: 'History', label: 'History' },
+                                    { value: 'Music', label: 'Music' },
+                                    { value: 'Sports', label: 'Sports' },
+                                    { value: 'Teen', label: 'Teen' },
+                                    { value: 'Travel', label: 'Travel' },
+                                ]}
+                            />
+                        </Form.Item>
+                    </div>
+
+                    <div>
+                        <div>Thumbnail Image</div>
+                        <div>
+                            <label htmlFor='btnUpload' style={{
+                                display: "block",
+                                width: "fit-content",
+                                marginTop: "15px",
+                                padding: "5px 10px",
+                                background: "orange",
+                                borderRadius: "5px",
+                                cursor: "pointer"
+                            }}>
+                                Upload
+                            </label>
+                            <input
+                                type='file' hidden id='btnUpload'
+                                onChange={(event) => handleOnChangeFile(event)}
+                                onClick={(event) => event.target.value = null}
+                                style={{ display: "none" }}
+                            />
+                        </div>
+                        {preview &&
+                            <>
+                                <div style={{
+                                    marginTop: "10px",
+                                    marginBottom: "15px",
+                                    height: "100px", width: "150px",
                                 }}>
-                                    Upload
-                                </label>
-                                <input
-                                    type='file'
-                                    id='btnUpload'
-                                    style={{ display: "none" }}
-                                    onChange={(event) => handleOnChangeFile(event)}
-                                    onClick={(event) => event.target.value = null}
-                                />
-                            </div>
+                                    <img style={{ height: "100%", width: "100%", objectFit: "contain" }}
+                                        src={preview} />
+                                </div>
+                            </>
+                        }
+                    </div>
 
-                            {preview &&
-                                <>
-                                    <div style={{
-                                        marginTop: "10px",
-                                        marginBottom: "15px",
-                                        height: "100px", width: "150px",
-                                    }}>
-                                        <img style={{ height: "100%", width: "100%", objectFit: "contain" }}
-                                            src={preview} />
-                                    </div>
-                                </>
-                            }
-                        </>
-                    </Form.Item>
-                </Form>
-            </Modal>
-        </>
-    );
+                </div>
+            </Form>
+        </Modal>
+    )
 }
 
 export default CreateBookUncontrol;

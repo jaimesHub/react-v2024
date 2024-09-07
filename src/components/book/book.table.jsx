@@ -2,7 +2,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
-import CreateBookControl from "./create.book.control";
+// import CreateBookControl from "./create.book.control";
 import BookDetail from "./book.detail";
 import CreateBookUncontrol from "./create.book.uncontrol";
 
