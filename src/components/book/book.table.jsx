@@ -3,6 +3,7 @@ import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
 import CreateBookControl from "./create.book.control";
+import BookDetail from "./book.detail";
 
 const BookTable = () => {
 
@@ -135,7 +136,6 @@ const BookTable = () => {
                 margin: "10px 0",
                 display: "flex",
                 justifyContent: "space-between"
-
             }}>
                 <h3>Table Book</h3>
                 <Button type="primary" onClick={() => setIsCreateOpen(true)}>Create Book</Button>
@@ -155,9 +155,13 @@ const BookTable = () => {
                     }
                 }
                 onChange={onChange}
+            />
+
+            <BookDetail
+                dataDetail={dataDetail}
+                setDataDetail={setDataDetail}
                 isDetailOpen={isDetailOpen}
                 setIsDetailOpen={setIsDetailOpen}
-
             />
 
             <CreateBookControl
