@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const TodoNew = (props) => {
-    const [valueInput, setValueInput] = useState("James");
+    const [valueInput, setValueInput] = useState("");
 
     const { addNewTodo } = props;
 
@@ -20,14 +20,14 @@ const TodoNew = (props) => {
                 onChange={(event) => { handleOnChange(event.target.value) }}
                 value={valueInput}
             />
-            <button 
+            <button
                 style={{ cursor: "pointer" }}
-                onClick={ handleClick }
+                onClick={handleClick}
             >Add</button>
             <div>
                 My text input is {valueInput}
             </div>
-      </div>
+        </div>
     );
 }
 

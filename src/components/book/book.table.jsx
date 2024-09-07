@@ -2,8 +2,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
-import BookDetail from "./book.detail";
-import BookForm from "./create.book.control";
+import CreateBookControl from "./create.book.control";
 
 const BookTable = () => {
 
@@ -17,6 +16,8 @@ const BookTable = () => {
 
     const [dataUpdate, setDataUpdate] = useState(null);
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
+
+    const [isCreateOpen, setIsCreateOpen] = useState(false);
 
 
     useEffect(() => {
@@ -130,7 +131,15 @@ const BookTable = () => {
 
     return (
         <>
-            <BookForm loadBooks={loadBook} />
+            <div style={{
+                margin: "10px 0",
+                display: "flex",
+                justifyContent: "space-between"
+
+            }}>
+                <h3>Table Book</h3>
+                <Button type="primary" onClick={() => setIsCreateOpen(true)}>Create Book</Button>
+            </div>
 
             <Table
                 columns={columns}
@@ -142,18 +151,19 @@ const BookTable = () => {
                         pageSize: pageSize,
                         showSizeChanger: true,
                         total: total,
-                        showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} trên {total} rows</div>) }
+                        showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} on {total} rows</div>) }
                     }
                 }
                 onChange={onChange}
+                isDetailOpen={isDetailOpen}
+                setIsDetailOpen={setIsDetailOpen}
 
             />
 
-            <BookDetail
-                dataDetail={dataDetail}
-                setDataDetail={setDataDetail}
-                isDetailOpen={isDetailOpen}
-                setIsDetailOpen={setIsDetailOpen}
+            <CreateBookControl
+                isCreateOpen={isCreateOpen}
+                setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
             />
         </>
     )
