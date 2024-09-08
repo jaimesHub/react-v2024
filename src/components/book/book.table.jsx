@@ -5,6 +5,8 @@ import { fetchAllBookAPI } from "../../services/api.service";
 // import CreateBookControl from "./create.book.control";
 import BookDetail from "./book.detail";
 import CreateBookUncontrol from "./create.book.uncontrol";
+import UpdateBookControl from "./update.book.control";
+import CreateBookControl from "./create.book.control";
 
 const BookTable = () => {
 
@@ -115,7 +117,8 @@ const BookTable = () => {
                             setDataUpdate(record);
                             setIsModalUpdateOpen(true);
                         }}
-                        style={{ cursor: "pointer", color: "orange" }} />
+                        style={{ cursor: "pointer", color: "orange" }}
+                    />
                     <Popconfirm
                         title="Delete this book ?"
                         description="Are you sure you want to delete this book ?"
@@ -165,15 +168,23 @@ const BookTable = () => {
                 setIsDetailOpen={setIsDetailOpen}
             />
 
-            {/* <CreateBookControl
+            <CreateBookControl
+                isCreateOpen={isCreateOpen}
+                setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
+            />
+
+            {/* <CreateBookUncontrol
                 isCreateOpen={isCreateOpen}
                 setIsCreateOpen={setIsCreateOpen}
                 loadBook={loadBook}
             /> */}
 
-            <CreateBookUncontrol
-                isCreateOpen={isCreateOpen}
-                setIsCreateOpen={setIsCreateOpen}
+            <UpdateBookControl
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
                 loadBook={loadBook}
             />
         </>
