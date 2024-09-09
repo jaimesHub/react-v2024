@@ -12,7 +12,7 @@ const UserPage = () => {
 
     // empty dependencies array is empty -> run once 
     // not empty dependencies array -> next value !== prev value
-    useEffect(() => {
+    useEffect(() => { // side effect (tác dụng phụ)
         loadUser();
     }, [current, pageSize]); // [] + condition
 
