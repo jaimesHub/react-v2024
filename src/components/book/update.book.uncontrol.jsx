@@ -1,5 +1,6 @@
-import { Form, Input, InputNumber, Modal, Select } from "antd";
+import { Form, Input, InputNumber, Modal, notification, Select } from "antd";
 import { useEffect, useState } from "react";
+import { handleUploadFile, updateBookAPI } from "../../services/api.service";
 
 const UpdateBookUncontrol = (props) => {
     const {
@@ -15,16 +16,90 @@ const UpdateBookUncontrol = (props) => {
 
     const [form] = Form.useForm();
 
-    const handleSubmitBtn = (values) => {
-        console.log(">>> values: ", values);
+    const handleSubmitBtn = async (values) => {
+        //không có ảnh preview + không có file upload => return
+        if (!selectedFile && !preview) {
+            notification.error({
+                message: "Error update book",
+                description: "Please upload a thumbnail image!"
+            });
+
+            return;
+        }
+
+        let newThumbnail = "";
+        //có ảnh preview và không có file upload => không upload file
+        if (!selectedFile && preview) {
+            //do nothing
+            newThumbnail = dataUpdate.thumbnail;
+        } else {
+            //có ảnh preview và có file => upload file
+            const resUpload = await handleUploadFile(selectedFile, "book");
+            if (resUpload.data) {
+                //success
+                newThumbnail = resUpload.data.fileUploaded;
+            } else {
+                //failed
+                notification.error({
+                    message: "Error upload file",
+                    description: JSON.stringify(resUpload.message)
+                });
+                return;
+            }
+        }
+
+        //step 2: update book
+        await updateBook(newThumbnail, values);
     }
+
+    const handleOnChangeFile = (event) => {
+
+        if (!event.target.files || event.target.files.length === 0) {
+            setSelectedFile(null);
+            setPreview(null);
+            return;
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedFile(file);
+            setPreview(URL.createObjectURL(file))
+        }
+    }
+
 
     const resetAndCloseModal = () => {
         form.resetFields();
+
         setSelectedFile(null);
         setPreview(null);
         setDataUpdate(null);
         setIsModalUpdateOpen(false);
+    }
+
+    const updateBook = async (newThumbnail, values) => {
+        const { id, mainText, author, price, quantity, category } = values;
+        const resBook = await updateBookAPI(
+            id, newThumbnail, mainText, author, price, quantity, category
+        );
+
+        if (resBook.data) {
+            resetAndCloseModal();
+
+            await loadBook();
+
+            notification.success({
+                message: "Update book",
+                description: "Update successfully!"
+            })
+
+        } else {
+            notification.error({
+                message: "Error update book",
+                description: JSON.stringify(resBook.message)
+            })
+        }
     }
 
     useEffect(() => {
@@ -177,7 +252,7 @@ const UpdateBookUncontrol = (props) => {
                             <input
                                 style={{ display: 'none' }}
                                 type='file' hidden id='btnUpload'
-                                // onChange={(event) => handleOnChangeFile(event)}
+                                onChange={(event) => handleOnChangeFile(event)}
                                 onClick={(event) => event.target.value = null}
                             />
                         </div>

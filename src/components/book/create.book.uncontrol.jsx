@@ -106,7 +106,7 @@ const CreateBookUncontrol = (props) => {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <div>
                         <Form.Item
-                            label="Tiêu đề"
+                            label="Title"
                             name="mainText"
                             rules={[
                                 {
@@ -121,7 +121,7 @@ const CreateBookUncontrol = (props) => {
 
                     <div>
                         <Form.Item
-                            label="Tác giả"
+                            label="Author"
                             name="author"
                             rules={[
                                 {
@@ -136,7 +136,7 @@ const CreateBookUncontrol = (props) => {
 
                     <div>
                         <Form.Item
-                            label="Giá tiền"
+                            label="Price"
                             name="price"
                             rules={[
                                 {
@@ -154,7 +154,7 @@ const CreateBookUncontrol = (props) => {
 
                     <div>
                         <Form.Item
-                            label="Số lượng"
+                            label="Quantity"
                             name="quantity"
                             rules={[
                                 {
@@ -171,7 +171,7 @@ const CreateBookUncontrol = (props) => {
 
                     <div>
                         <Form.Item
-                            label="Thể loại"
+                            label="Category"
                             name="category"
                             rules={[
                                 {
