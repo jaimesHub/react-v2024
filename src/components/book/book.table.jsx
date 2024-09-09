@@ -2,9 +2,8 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, notification, Popconfirm, Table } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { deleteBookAPI, fetchAllBookAPI } from "../../services/api.service";
-// import CreateBookControl from "./create.book.control";
 import BookDetail from "./book.detail";
-// import CreateBookUncontrol from "./create.book.uncontrol";
+import CreateBookUncontrol from "./create.book.uncontrol";
 // import UpdateBookControl from "./update.book.control";
 import CreateBookControl from "./create.book.control";
 import UpdateBookUncontrol from "./update.book.uncontrol";
@@ -187,17 +186,17 @@ const BookTable = () => {
                 setIsDetailOpen={setIsDetailOpen}
             />
 
-            <CreateBookControl
-                isCreateOpen={isCreateOpen}
-                setIsCreateOpen={setIsCreateOpen}
-                loadBook={loadBook}
-            />
-
-            {/* <CreateBookUncontrol
+            {/* <CreateBookControl
                 isCreateOpen={isCreateOpen}
                 setIsCreateOpen={setIsCreateOpen}
                 loadBook={loadBook}
             /> */}
+
+            <CreateBookUncontrol
+                isCreateOpen={isCreateOpen}
+                setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
+            />
 
             {/* <UpdateBookControl
                 dataUpdate={dataUpdate}
