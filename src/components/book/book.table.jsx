@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Popconfirm, Table } from "antd";
+import { Button, notification, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
-import { fetchAllBookAPI } from "../../services/api.service";
+import { deleteBookAPI, fetchAllBookAPI } from "../../services/api.service";
 // import CreateBookControl from "./create.book.control";
 import BookDetail from "./book.detail";
 import CreateBookUncontrol from "./create.book.uncontrol";
@@ -41,8 +41,22 @@ const BookTable = () => {
     }
 
 
-    const handleDeleteBook = async (id) => {
+    const handleDeleteBook = async (book) => {
+        const res = await deleteBookAPI(book._id);
 
+        if (res.data) {
+            notification.success({
+                message: "Delete Book",
+                description: "Delete successfully!",
+            });
+
+            await loadBook();
+        } else {
+            notification.error({
+                message: res.error,
+                description: res.message,
+            });
+        }
     }
 
     const onChange = (pagination, filters, sorter, extra) => {
@@ -123,7 +137,7 @@ const BookTable = () => {
                     <Popconfirm
                         title="Delete this book ?"
                         description="Are you sure you want to delete this book ?"
-                        onConfirm={() => handleDeleteBook(record._id)}
+                        onConfirm={() => handleDeleteBook(record)}
                         okText="Yes"
                         cancelText="No"
                         placement="left"
